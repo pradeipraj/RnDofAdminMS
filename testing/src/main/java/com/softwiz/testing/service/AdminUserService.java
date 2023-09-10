@@ -43,6 +43,16 @@ public class AdminUserService {
             }
 
     }
+
+    public void deleteUser(Long userId) {
+
+        if (userRepository.existsById(userId)) {
+            userRepository.deleteById(userId);
+            auditLogService.addLog(userId, "User Deletion", "User");
+        } else {
+            throw new IllegalArgumentException("User not found");
+        }
+    }
 }
 
 

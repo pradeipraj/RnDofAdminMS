@@ -22,4 +22,10 @@ public class AdminUserController {
         adminUserService.registerAdminUser(adminUserDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @DeleteMapping("{userId}")
+    public ResponseEntity<?> deleteUSer(@PathVariable Long userId){
+        adminUserService.deleteUser(userId);
+        return new ResponseEntity<>("User Deleted:" + userId, HttpStatus.OK);
+    }
 }

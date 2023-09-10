@@ -26,7 +26,7 @@ public class AdminUserService {
         adminUser.setUsername(adminUserDTO.getUsername());
         adminUser.setPassword(adminUserDTO.getPassword());
         adminUserRepository.save(adminUser);
-        auditLogService.logAdminCreation(adminUser.getAdminId(),"AdminUser");
+        auditLogService.addLog(adminUser.getAdminId(),"Admin Creation", "Admin User");
 
         // Create users and associate them with the admin
             List<UserDTO> createdUsers = adminUserDTO.getCreatedUsers();
@@ -38,7 +38,7 @@ public class AdminUserService {
                     user.setIsEnable(userDTO.getIsEnable());
                     user.setAdmin(adminUser);
                     userRepository.save(user);
-                    auditLogService.logUserCreation(adminUser.getAdminId(),"User");
+                    auditLogService.addLog(adminUser.getAdminId(),"User Creation", "User");
                 }
             }
 
